@@ -22,6 +22,12 @@ public class StudentDaoImpl implements StudentDao {
 		int update = this.jdbcTemplate.update(query,student.getName(),student.getCity(),student.getId());
 		return update;
 	}
+	public int delete(int studentId) {
+		// delete operation
+		String query="delete from student where id=?";
+		int r = this.jdbcTemplate.update(query,studentId);
+		return r;
+	}
 
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
@@ -30,5 +36,7 @@ public class StudentDaoImpl implements StudentDao {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
+
+	
 
 }
