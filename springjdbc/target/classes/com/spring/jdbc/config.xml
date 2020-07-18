@@ -20,6 +20,10 @@
          <property name="dataSource">
          <ref bean="ds" />
          </property>
+         
+         </bean>
+         <bean class="com.spring.dao.StudentDaoImpl" name="studenDao">
+         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
          </bean>
 
 </beans>

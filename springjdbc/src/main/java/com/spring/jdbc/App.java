@@ -4,6 +4,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.spring.dao.StudentDao;
+import com.spring.jdbc.entities.Student;
+
 /**
  * Hello world!
  *
@@ -16,12 +19,14 @@ public class App
         //Spring jdbc=> jdbcTemplate
         ApplicationContext context=new
         		ClassPathXmlApplicationContext("com/spring/jdbc/config.xml");
-        JdbcTemplate template = context.getBean("jdbcTemplate",JdbcTemplate.class);
-        //insert query
-        String query="insert into student(id,name,city) values(?,?,?)";
-        //fire query
-        int result = template.update(query,11294,"Sojib","Mymensingh");
-        System.out.println("Number of record inserted..."+result);
-        
+        //JdbcTemplate template = context.getBean("jdbcTemplate",JdbcTemplate.class);
+       StudentDao studentDao = context.getBean("studenDao",StudentDao.class);
+       Student student=new Student();
+       student.setId(1145);
+       student.setName("Rana");
+       student.setCity("Cumilla");
+       
+       int result = studentDao.insert(student);
+       System.out.println("Student added "+result);
     }
 }
