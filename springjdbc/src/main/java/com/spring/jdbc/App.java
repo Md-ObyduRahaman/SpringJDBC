@@ -19,6 +19,7 @@ public class App
         //Spring jdbc=> jdbcTemplate
         ApplicationContext context=new
         		ClassPathXmlApplicationContext("com/spring/jdbc/config.xml");
+        StudentDao studentDao = context.getBean("studenDao",StudentDao.class);
         //JdbcTemplate template = context.getBean("jdbcTemplate",JdbcTemplate.class);
 		/* INSERT
 		 * StudentDao studentDao = context.getBean("studenDao",StudentDao.class);
@@ -37,9 +38,15 @@ public class App
 		 * System.out.println("Student data changed... "+result);
 		 */
         //DELETE
-        StudentDao studentDao = context.getBean("studenDao",StudentDao.class);
-        int result =studentDao.delete(1129);
-        System.out.println("Student data deleted... "+result);
+		/*
+		 * StudentDao studentDao = context.getBean("studenDao",StudentDao.class); int
+		 * result =studentDao.delete(1129);
+		 * System.out.println("Student data deleted... "+result);
+		 */
+        //select single data
+        Student student = studentDao.getStudent(11294);
+        System.out.println("Student details data... "+student);
+        
         
     }
 }
